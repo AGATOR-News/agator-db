@@ -20,6 +20,10 @@ class PubDB(BaseDB):
         result = self.insert("providers", "publications", data)
         return result
 
+    def get_all(self):
+        result = self.get_all("porivders", "publications")
+        data = [Publication.parse_obj(r) for r in result]
+
     # def del_pub(self, id: str): # -> DeletionResult
     #     if not self.id_exists(id):
     #         raise ValueError("Not Found")
