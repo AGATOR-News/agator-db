@@ -62,14 +62,19 @@ class BaseDB:
 
 
 class BaseDB(BaseDB):
-    def __get(self, db: str, tb: str, id: str):
+    def get(self, db: str, tb: str, id: str):
         ref = self.__rdb.db(db).table(tb)
         res = ref.get(id)
         return res
 
-    def __get_multiple(self, db: str, tb: str, id: List[str]):
+    def get_multiple(self, db: str, tb: str, id: List[str]):
         ref = self.__rdb.db(db).table(tb)
         res = ref.get_all(id)
+        return res
+
+    def get_all(self, db: str, tb: str, id: List[str]):
+        ref = self.__rdb.db(db).table(tb)
+        res = ref.run(self.__conn())
         return res
 # Insertion
 
